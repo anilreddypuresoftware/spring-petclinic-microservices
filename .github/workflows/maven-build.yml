@@ -41,7 +41,7 @@ jobs:
             docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws \
               arm64v8/ubuntu:20.04 \
               bash -exc 'apt-get update && apt-get -y install sudo wget && \
-              cd /etc/ca-certificates/update.d/jks-keystore && \
+              cd /etc/ca-certificates/update.d && \
               sudo apt-get install openjdk-17-jdk -y && \   
               export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 && \
               export PATH=$JAVA_HOME/bin:$PATH && \
