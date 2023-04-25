@@ -40,9 +40,7 @@ jobs:
           run: |
             docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws \
               arm64v8/ubuntu:20.04 \
-              bash -exc 'apt-get update && apt-get -y install python3 python3-pip python3-venv curl sudo wget && \
-              python3 -m pip install virtualenv && python3 -m venv py38-venv && \
-              source py38-venv/bin/activate && \ 
+              bash -exc 'apt-get update && apt-get -y install sudo wget && \
               sudo apt-get install openjdk-17-jdk -y && \   
               export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 && \
               export PATH=$JAVA_HOME/bin:$PATH && \
