@@ -42,7 +42,7 @@ jobs:
               arm64v8/ubuntu:20.04 \
               bash -exc 'apt-get update && apt-get -y install sudo wget && \
               sudo mkdir /etc/ssl/certs/java/ && \
-              sudo apt-get install openjdk-17-jdk -y && \   
+              sudo apt-get install -y openjdk-17-jdk && \   
               export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 && \
               export PATH=$JAVA_HOME/bin:$PATH && \
               java -version && \
