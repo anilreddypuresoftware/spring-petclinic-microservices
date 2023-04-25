@@ -41,11 +41,12 @@ jobs:
             docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws \
               arm64v8/ubuntu:20.04 \
               bash -exc 'apt-get update && apt-get -y install sudo wget && \
+              cd /etc/ca-certificates/update.d/jks-keystore && \
               sudo apt-get install openjdk-17-jdk -y && \   
               export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 && \
               export PATH=$JAVA_HOME/bin:$PATH && \
               java -version && \
-              update-alternatives --config java && \
+              cd && \
               wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz && \
               tar -xvf apache-maven-3.9.1-bin.tar.gz && \
               sudo mv apache-maven-3.9.1 /opt/ && \
