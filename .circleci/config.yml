@@ -24,20 +24,20 @@ jobs:
     steps:
       - checkout
       - run: sudo apt update
-      - run: sudo apt install -y openjdk-17-jdk 
-      - run: export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 
-      - run: export PATH=$JAVA_HOME/bin:$PATH 
-      - run: java -version 
-      - run: update-alternatives --config java 
-      - run: wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz 
-      - run: tar -xvf apache-maven-3.9.1-bin.tar.gz 
-      - run: sudo mv apache-maven-3.9.1 /opt/ 
-      - run: M2_HOME='/opt/apache-maven-3.9.1' 
-      - run: PATH="$M2_HOME/bin:$PATH" 
-      - run: export PATH 
-      - run: sudo ln -s /opt/apache-maven-3.9.1/bin/mvn /usr/bin/mvn 
-      - run: mvn -version 
-      - run: mvn -B package --file pom.xml
+             sudo apt install -y openjdk-17-jdk 
+             export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 
+             export PATH=$JAVA_HOME/bin:$PATH 
+             java -version 
+             update-alternatives --config java 
+             wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz 
+             tar -xvf apache-maven-3.9.1-bin.tar.gz 
+             sudo mv apache-maven-3.9.1 /opt/ 
+             M2_HOME='/opt/apache-maven-3.9.1' 
+             PATH="$M2_HOME/bin:$PATH" 
+             export PATH 
+             sudo ln -s /opt/apache-maven-3.9.1/bin/mvn /usr/bin/mvn 
+             mvn -version 
+             mvn -B package --file pom.xml
   
       
          
