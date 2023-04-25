@@ -42,7 +42,6 @@ jobs:
               arm64v8/ubuntu:20.04 \
               bash -exc 'apt-get update && apt-get -y install sudo wget && \
               sudo mkdir /etc/ssl/certs/java/ && \
-              sudo apt install --reinstall -o Dpkg::Options::="--force-confask,confnew,confmiss" --reinstall ca-certificates-java ssl-cert openssl ca-certificates && \
               sudo apt-get install openjdk-17-jdk -y && \   
               export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 && \
               export PATH=$JAVA_HOME/bin:$PATH && \
