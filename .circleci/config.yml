@@ -1,0 +1,55 @@
+version: 2.1
+
+orbs: 
+  go: circleci/go@1.7.1
+  
+
+run:
+when: "branch =~ '.*' OR pull_request =~'.*'"  
+jobs:
+  manylinux2014-aarch64:
+    parameters:
+      cibw_build:
+        type: string
+        default: "cp37-*"
+        sleep_250:
+       
+           
+           
+    
+
+    machine:
+      image: ubuntu-2004:202101-01
+    resource_class: arm.medium
+    steps:
+      - checkout
+      - run: sudo apt install -y openjdk-17-jdk && \   
+             export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 && \
+             export PATH=$JAVA_HOME/bin:$PATH && \
+             java -version && \
+             update-alternatives --config java && \
+             wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz && \
+             tar -xvf apache-maven-3.9.1-bin.tar.gz && \
+             sudo mv apache-maven-3.9.1 /opt/ && \
+             M2_HOME='/opt/apache-maven-3.9.1' && \
+             PATH="$M2_HOME/bin:$PATH" && \
+             export PATH && \
+             sudo ln -s /opt/apache-maven-3.9.1/bin/mvn /usr/bin/mvn && \
+             mvn -version && \
+             mvn -B package --file pom.xml
+  
+      
+         
+      
+      
+     
+      
+workflows:
+  version: 2.1
+  main:
+    jobs:
+      - manylinux2014-aarch64:
+          matrix:
+            parameters:
+              cibw_build:
+                - "cp37*"
