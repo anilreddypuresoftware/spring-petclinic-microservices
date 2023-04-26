@@ -28,7 +28,7 @@ jobs:
     - name: Build with Maven
       run: mvn -B package --file pom.xml
       
-  arm64_job:
+  armv64_job:
       name: Build and Test for arm64
       runs-on: ubuntu-20.04
       steps:
@@ -40,18 +40,17 @@ jobs:
           run: |
             docker run --rm -v ${{ github.workspace }}:/ws:rw --workdir=/ws \
               arm64v8/ubuntu:20.04 \
-              bash -exc 'apt-get update && apt -y install sudo wget && \
-              apt-get install -y openjdk-17-jdk && \ 
-              update-alternatives --config java && \ 
-              export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64/ && \
+              bash -exc 'apt-get update && \
+              apt-get install sudo && \
+              apt-get install -y wget && \
+              sudo apt-get install -y openjdk-17-jdk && \
+              export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-arm64 && \
               export PATH=$JAVA_HOME/bin:$PATH && \
-              java -version && \
-              wget https://dlcdn.apache.org/maven/maven-3/3.9.1/binaries/apache-maven-3.9.1-bin.tar.gz && \
-              tar -xvf apache-maven-3.9.1-bin.tar.gz && \
-              sudo mv apache-maven-3.9.1 /opt/ && \
-              M2_HOME='/opt/apache-maven-3.9.1' && \
-              PATH="$M2_HOME/bin:$PATH" && \
-              export PATH && \
-              sudo ln -s /opt/apache-maven-3.9.1/bin/mvn /usr/bin/mvn && \
-              mvn -version && \
-              mvn -B package --file pom.xml'
+              wget https://dlcdn.apache.org/maven/maven-3/3.8.8/binaries/apache-maven-3.8.8-bin.tar.gz && \
+              tar -xvf apache-maven-3.8.8-bin.tar.gz && \
+              sudo mv apache-maven-3.8.8 /opt/ && \
+              sudo ln -s /opt/apache-maven-3.8.8/bin/mvn /usr/bin/mvn && \
+              mvn -v && \
+              mvn -B package --file pom.xml '
+              
+              
